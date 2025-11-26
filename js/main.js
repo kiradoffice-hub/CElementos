@@ -696,6 +696,10 @@ function changeLanguage(lang) {
     currentLanguage = lang;
     localStorage.setItem('cafeElementosLanguage', lang);
     applyTranslations();
+    
+    // Re-renderizar elementos dinámicos
+    renderProducts();
+    renderMenuItems();
 }
 
 // ============================================
