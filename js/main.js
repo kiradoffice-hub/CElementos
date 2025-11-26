@@ -17,7 +17,7 @@ const EMAILJS_PUBLIC_KEY = 'nb75RxYtqPNBOw3O2';
 // ============================================
 // DATOS DE PRODUCTOS
 // ============================================
-const PRODUCT_IMAGE = 'https://scontent.fvsa2-1.fna.fbcdn.net/v/t39.30808-6/495601645_1198908208917618_4324142393229895495_n.jpg?_nc_cat=103&ccb=1-7&_nc_sid=a5f93a&_nc_ohc=LXQAJeKjCkkQ7kNvwFqblSH&_nc_oc=AdkL2rT9E5JKzvVmYsi5-gLaOLbuHT6JczBiQV2q7aCERwvnpKFL6Zr_pqRez0eVilI&_nc_zt=23&_nc_ht=scontent.fvsa2-1.fna&_nc_gid=HT-GbkexYubjTnC9fSSDrA&oh=00_AfiUM5WCTaSSWSi5eqGiH24eiM0wJkiRFN91bYEvjT7juw&oe=6925534E';
+const PRODUCT_IMAGE = 'images/logo.jpeg';
 
 const products = [
     {
@@ -25,7 +25,7 @@ const products = [
         name: 'Aldama, Chiapas',
         origin: 'Cafeología Natural',
         prices: { '1/4': 350, '1/2': 700, '1kg': 1400 },
-        image: PRODUCT_IMAGE,
+        image: 'images/cafe_normal.jpeg',
         category: 'coffee'
     },
     {
@@ -33,7 +33,7 @@ const products = [
         name: 'Tatetela, Veracruz',
         origin: 'Lavado',
         prices: { '1/4': 120, '1/2': 240, '1kg': 480 },
-        image: PRODUCT_IMAGE,
+        image: 'images/cafe_normal.jpeg',
         category: 'coffee'
     },
     {
@@ -41,7 +41,7 @@ const products = [
         name: 'Adelitas, Chiapas',
         origin: 'Lavado',
         prices: { '1/4': 120, '1/2': 240, '1kg': 480 },
-        image: PRODUCT_IMAGE,
+        image: 'images/cafe_cafeologia.jpeg',
         category: 'coffee'
     }
 ];
