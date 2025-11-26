@@ -124,8 +124,6 @@ const translations = {
         
         // Nosotros
         'about.title': 'Acerca de Nosotros',
-        'about.text1': 'Bienvenido a Café Elementos, el lugar donde el café cobra vida. Nos dedicamos a ofrecer café de alta calidad con un toque especial que deleita tus sentidos.',
-        'about.text2': 'En Café Elementos, nos esforzamos por crear un ambiente acogedor donde te sientas como en casa.',
         
         // Contacto
         'contact.title': 'Contáctanos',
@@ -338,12 +336,13 @@ function applyTranslations() {
         if (title.textContent.includes('Acerca') || title.textContent.includes('About')) {
             title.textContent = translate('about.title');
         }
-    });
+   
     const aboutParagraphs = document.querySelectorAll('.about-content p');
     if (aboutParagraphs.length >= 2) {
     aboutParagraphs[0].textContent = translate('about.text1');
     aboutParagraphs[1].textContent = translate('about.text2');
     }
+        });
     // Menu page
     const menuTitle = document.querySelector('.menu-hero h1');
     if (menuTitle) menuTitle.textContent = translate('menu.title');
