@@ -124,6 +124,8 @@ const translations = {
         
         // Nosotros
         'about.title': 'Acerca de Nosotros',
+        'about.text1': 'Bienvenido a Café Elementos, el lugar donde el café cobra vida. Nos dedicamos a ofrecer café de alta calidad con un toque especial que deleita tus sentidos.',
+        'about.text2': 'En Café Elementos, nos esforzamos por crear un ambiente acogedor donde te sientas como en casa.',
         
         // Contacto
         'contact.title': 'Contáctanos',
