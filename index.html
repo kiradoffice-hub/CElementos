@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Café Elementos - Café de especialidad en Villahermosa, Tabasco. Descubre el sabor del café perfecto.">
+    <meta name="keywords" content="café, coffee, Villahermosa, Tabasco, café de especialidad, café mexicano">
+    <meta name="author" content="Café Elementos">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="Café Elementos">
+    <meta property="og:description" content="El lugar donde el café cobra vida. Café de especialidad en Villahermosa, Tabasco.">
+    <meta property="og:type" content="website">
+    
+    <title>Café Elementos | Café de Especialidad</title>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- EmailJS SDK -->
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    
+    <!-- Estilos -->
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <!-- HEADER & NAVIGATION -->
+    <header>
+        <nav>
+            <div class="logo" onclick="showPage('inicio')">
+                <div class="logo-icon"></div>
+                <div class="logo-text">
+                    <span class="main">Café</span>
+                    <span class="sub">Elementos</span>
+                </div>
+            </div>
+            
+            <!-- Mobile Menu Button -->
+            <div class="mobile-menu-btn" id="mobileMenuBtn">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+
+            <!-- Cart siempre visible en mobile -->
+            <div class="cart-icon mobile-cart" onclick="toggleCart()">
+                🛒
+                <span class="cart-count" id="cartCount">0</span>
+            </div>
+
+            <div class="mobile-menu-container" id="mobileMenuContainer">
+                <ul id="navMenu">
+                    <li><a onclick="showPage('bienvenido')">Bienvenido</a></li>
+                    <li><a onclick="showPage('inicio')">Inicio</a></li>
+                    <li><a onclick="showPage('menu')">Menú</a></li>
+                    <li><a onclick="showPage('productos')">Productos</a></li>
+                    <li><a onclick="showPage('nosotros')">Más</a></li>
+                </ul>
+                
+                <div class="nav-right">
+                    <!-- Language Selector -->
+                    <div class="language-selector">
+                        <select id="languageSelect" onchange="changeLanguage(this.value)">
+                            <option value="es">🇪🇸 ES</option>
+                            <option value="en">🇺🇸 EN</option>
+                        </select>
+                    </div>
+                    
+                    <!-- Search Bar -->
+                    <div class="search-container">
+                        <input type="text" id="searchInput" placeholder="Buscar productos..." onkeyup="handleSearch(event)">
+                        <button class="search-btn" onclick="performSearch()">🔍</button>
+                    </div>
+                    
+                    <span class="principal-text">Principal</span>
+                    <div class="cart-icon desktop-cart" onclick="toggleCart()">
+                        🛒
+                        <span class="cart-count" id="cartCount2">0</span>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- CHAT BUTTON -->
+    <div class="chat-button" id="chatButton" onclick="toggleChat()">
+        <span class="chat-text">¡Vamos a chatear!</span>
+        <span class="chat-icon">💬</span>
+    </div>
+
+    <!-- CHAT WINDOW -->
+    <div class="chat-window" id="chatWindow">
+        <div class="chat-header">
+            <div>
+                <h3>Café Elementos</h3>
+                <p class="chat-status">● Te responderemos tan pronto como podamos</p>
+            </div>
+            <button class="close-chat" onclick="toggleChat()">✕</button>
+        </div>
+        <div class="chat-messages" id="chatMessages">
+            <div class="chat-time">Ahora</div>
+            <div class="chat-message received">
+                <p>¡Hola! Bienvenido a Café Elementos. ¿En qué podemos ayudarte hoy?</p>
+            </div>
+        </div>
+        <div class="chat-input-container">
+            <input type="text" id="chatInput" placeholder="Escribe tu mensaje..." onkeypress="handleChatEnter(event)">
+            <button onclick="sendChatMessage()">
+                <span style="font-size: 1.2rem;">📤</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- PAGE: BIENVENIDO -->
+    <div id="page-bienvenido" class="page-content">
+        <div class="welcome-section">
+            <div class="welcome-content">
+                <!-- Promotional Banner -->
+                <div class="promotion-banner">
+                    <div class="promotion-content">
+                        <span class="promotion-badge">🔥 PROMOCIÓN</span>
+                        <h3>¡2 Frappes por $120!</h3>
+                        <p>Disfruta de nuestra promoción especial por tiempo limitado</p>
+                        <div class="promotion-timer">
+                            <span id="promotionTimer">La promoción termina en: 07:23:45</span>
+                        </div>
+                        <p class="shipping-info">🚚 Envío gratis en compras mayores a $300 en zonas cercanas</p>
+                    </div>
+                </div>
+                
+                <h1>Bienvenido a Café Elementos</h1>
+                <p>El lugar donde el café cobra vida. Nos dedicamos a ofrecer café de alta calidad con un toque especial que deleita tus sentidos. Descubre nuestra pasión por el café en cada taza que preparamos.</p>
+                <button class="welcome-btn" onclick="showPage('inicio')">Explorar Nuestro Café</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- PAGE: INICIO -->
+    <div id="page-inicio" class="page-content hidden">
+        <!-- Search Bar Section -->
+        <section class="search-section">
+            <div class="search-info">
+                <div class="last-update">
+                    <span>Última actualización: <span id="lastUpdateDate">15/01/2025</span></span>
+                </div>
+                <div class="search-main">
+                    <input type="text" id="mainSearchInput" placeholder="Buscar café, bebidas, productos..." onkeyup="handleMainSearch(event)">
+                    <button class="search-main-btn" onclick="performMainSearch()">🔍 Buscar</button>
+                </div>
+                <div class="search-categories">
+                    <button class="category-btn active" onclick="filterByCategory('all')">Todos</button>
+                    <button class="category-btn" onclick="filterByCategory('coffee')">Café a Granel</button>
+                    <button class="category-btn" onclick="filterByCategory('drinks')">Bebidas</button>
+                </div>
+                <!-- Search Results Container -->
+                <div id="searchResults"></div>
+            </div>
+        </section>
+
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="hero-content">
+                <h1>SUSCRÍBETE</h1>
+                <p>Regístrate al correo electrónico para no perderte de nuestros eventos 2025</p>
+                <div class="newsletter">
+                    <input type="email" id="newsletterEmail" placeholder="Introduce tu correo electrónico aquí">
+                    <button onclick="subscribeNewsletter()">Enviar</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Gallery Section -->
+        <div class="section-title">
+            <h2>EXPLORA<br>NUESTRO CAFÉ</h2>
+            <p>Descubre el sabor del café perfecto <a onclick="showPage('productos')">VER MENÚ</a></p>
+        </div>
+        
+        <div class="gallery">
+            <div class="gallery-item" style="background: url('https://scontent.fvsa2-1.fna.fbcdn.net/v/t39.30808-6/495135830_122164211168559428_2218339933095604836_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=127cfc&_nc_ohc=RwbIZxZAIZ0Q7kNvwEMeYLw&_nc_oc=AdkQjei_K8IlRn2iakT-2CsLJv7th8m5HgvWhg3Al0G49HzStadVT-krNtCLSOgeNQQ&_nc_zt=23&_nc_ht=scontent.fvsa2-1.fna&_nc_gid=JfOZsHuIC5Znojg-2hkeAg&oh=00_AfjJP97dhzKQNe1JH_t2aPY6LBl7UYIdcrspVX1xZ39o9w&oe=692546BD') center/cover;"></div>
+            <div class="gallery-item" style="background: url('https://scontent.fvsa2-1.fna.fbcdn.net/v/t39.30808-6/495356072_122164201712559428_8906691377449320149_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=127cfc&_nc_ohc=SjhqKfhcfIQQ7kNvwG-x1wQ&_nc_oc=Adm50GxE_nYuQBCVQ5uV7fVUzvmTToww4JgINsiNP3NPOIdLIcaiMTuXJdDiIYdy6rg&_nc_zt=23&_nc_ht=scontent.fvsa2-1.fna&_nc_gid=QdjYsTNOV-a2U_bHMmN_gw&oh=00_Afi7_fg2lP7V31g0jCjU8eMgO-6OWFdl7gURETpZHUVUkw&oe=6925347B') center/cover;"></div>
+        </div>
+
+        <!-- About Section -->
+        <section class="about-section">
+            <div class="about-container">
+                <div class="about-content">
+                    <h2>Acerca de Nosotros</h2>
+                    <p>Bienvenido a Café Elementos, el lugar donde el café cobra vida. Nos dedicamos a ofrecer café de alta calidad con un toque especial que deleita tus sentidos. Nuestra pasión por el café se refleja en cada taza que preparamos, buscando brindarte una experiencia única en cada sorbo.</p>
+                    <p>En Café Elementos, nos esforzamos por crear un ambiente acogedor donde te sientas como en casa. Nuestro equipo de baristas expertos está listo para guiarte a través de nuestro menú y recomendarte la combinación perfecta para tu paladar. ¡Ven y disfruta de la verdadera esencia del café con nosotros!</p>
+                </div>
+                <div class="about-image">
+                    <img src="https://scontent.fvsa2-1.fna.fbcdn.net/v/t39.30808-6/486123416_1119811583493948_2701088069330973425_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=127cfc&_nc_ohc=Zdmx1EIDYxQQ7kNvwEYHLOF&_nc_oc=AdlGaNFFZGmmx64Wbc_yiBa0ZTaLoCQ4eByDN6xZZitqqZVnIWSh8XJysehh6acu3Ec&_nc_zt=23&_nc_ht=scontent.fvsa2-1.fna&_nc_gid=3m912XSUt8EhgHEn4H0p6Q&oh=00_AfiGExb2UZTQ9P35r2G-xTdcfHBh2isavTEMoEVq5DcmJw&oe=69256163" alt="Café Elementos">
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section class="contact-section">
+            <div class="contact-container">
+                <h2>Contáctanos</h2>
+                <div class="contact-grid">
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <div class="contact-icon">📍</div>
+                            <div>
+                                <h3>Dirección</h3>
+                                <p>Av Paseo Tabasco 1124, Jesus Garcia, 86040 Villahermosa, Tab.</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon">📞</div>
+                            <div>
+                                <h3>Teléfono</h3>
+                                <p>993 426 3253</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon">✉️</div>
+                            <div>
+                                <h3>Correo</h3>
+                                <p>cafelementos@gmail.com</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="contact-form">
+                        <div class="form-row">
+                            <input type="text" placeholder="Nombre" id="contactName">
+                            <input type="text" placeholder="Apellido" id="contactLastName">
+                        </div>
+                        <input type="email" placeholder="Correo" id="contactEmail">
+                        <input type="tel" placeholder="Teléfono" id="contactPhone">
+                        <textarea placeholder="Mensaje" id="contactMessage"></textarea>
+                        <button class="submit-btn" onclick="sendContact()">Enviar</button>
+                    </div>
+                </div>
+                <div class="map-container">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3794.5!2d-92.9447!3d17.9892!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85edd79de4f0de29%3A0x7d4a82a8f8e4c4a0!2sAv.%20Paseo%20Tabasco%201124%2C%20Jes%C3%BAs%20Garc%C3%ADa%2C%2086040%20Villahermosa%2C%20Tab.!5e0!3m2!1ses!2smx!4v1699000000000!5m2!1ses!2smx" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- PAGE: MENÚ -->
+    <div id="page-menu" class="page-content hidden">
+        <div class="menu-section">
+            <div class="menu-hero">
+                <h1>Nuestro Menú</h1>
+                <p>Descubre nuestras deliciosas bebidas</p>
+            </div>
+            <div class="menu-content">
+                <div class="menu-category">
+                    <h2>🧊 FRAPPES (Bebidas Frías)</h2>
+                    <div class="menu-items" id="menuFrappes"></div>
+                </div>
+                <div class="menu-category">
+                    <h2>🔥 BEBIDAS CALIENTES</h2>
+                    <h3>A base de café y chocolate</h3>
+                    <div class="menu-items" id="menuHotCoffee"></div>
+                </div>
+                <div class="menu-category">
+                    <h3>Tés Calientes</h3>
+                    <div class="menu-items" id="menuTeas"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- PAGE: PRODUCTOS -->
+    <div id="page-productos" class="page-content hidden">
+        <section style="padding: 6rem 3rem 4rem; background: white;">
+            <div style="max-width: 1400px; margin: 0 auto;">
+                <h2>Nuestros Productos</h2>
+                <div class="products-grid" id="productsGrid"></div>
+            </div>
+        </section>
+    </div>
+
+    <!-- PAGE: NOSOTROS -->
+    <div id="page-nosotros" class="page-content hidden">
+        <section class="about-section" style="min-height: calc(100vh - 80px); padding: 6rem 3rem;">
+            <div class="about-container">
+                <div class="about-content">
+                    <h2>Acerca de Nosotros</h2>
+                    <p>Bienvenido a Café Elementos, el lugar donde el café cobra vida. Nos dedicamos a ofrecer café de alta calidad con un toque especial que deleita tus sentidos.</p>
+                    <p>En Café Elementos, nos esforzamos por crear un ambiente acogedor donde te sientas como en casa.</p>
+                </div>
+                <div class="about-image">
+                    <img src="https://scontent.fvsa2-1.fna.fbcdn.net/v/t39.30808-6/486123416_1119811583493948_2701088069330973425_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=127cfc&_nc_ohc=Zdmx1EIDYxQQ7kNvwEYHLOF&_nc_oc=AdlGaNFFZGmmx64Wbc_yiBa0ZTaLoCQ4eByDN6xZZitqqZVnIWSh8XJysehh6acu3Ec&_nc_zt=23&_nc_ht=scontent.fvsa2-1.fna&_nc_gid=3m912XSUt8EhgHEn4H0p6Q&oh=00_AfiGExb2UZTQ9P35r2G-xTdcfHBh2isavTEMoEVq5DcmJw&oe=69256163" alt="Café Elementos">
+                </div>
+            </div>
+        </section>
+        
+        <section class="contact-section">
+            <div class="contact-container">
+                <h2>Contáctanos</h2>
+                <div class="contact-grid">
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <div class="contact-icon">📍</div>
+                            <div>
+                                <h3>Dirección</h3>
+                                <p>Av Paseo Tabasco 1124, Jesus Garcia, 86040 Villahermosa, Tab.</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon">📞</div>
+                            <div>
+                                <h3>Teléfono</h3>
+                                <p>993 426 3253</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon">✉️</div>
+                            <div>
+                                <h3>Correo</h3>
+                                <p>cafelementos@gmail.com</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="contact-form">
+                        <div class="form-row">
+                            <input type="text" placeholder="Nombre">
+                            <input type="text" placeholder="Apellido">
+                        </div>
+                        <input type="email" placeholder="Correo">
+                        <input type="tel" placeholder="Teléfono">
+                        <textarea placeholder="Mensaje"></textarea>
+                        <button class="submit-btn" onclick="sendContact()">Enviar</button>
+                    </div>
+                </div>
+                <div class="map-container">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3794.5!2d-92.9447!3d17.9892!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85edd79de4f0de29%3A0x7d4a82a8f8e4c4a0!2sAv.%20Paseo%20Tabasco%201124%2C%20Jes%C3%BAs%20Garc%C3%ADa%2C%2086040%20Villahermosa%2C%20Tab.!5e0!3m2!1ses!2smx!4v1699000000000!5m2!1ses!2smx" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- PAGE: POLÍTICA DE PRIVACIDAD -->
+    <div id="page-privacy" class="page-content hidden">
+        <section class="privacy-section">
+            <div class="privacy-container">
+                <div class="privacy-header">
+                    <h1>Aviso Legal</h1>
+                    <p>Última actualización: 15 de Enero, 2025</p>
+                </div>
+                
+                <div class="privacy-content">
+                    <div class="privacy-section">
+                        <h2>Compromiso con tu Privacidad</h2>
+                        <p>En nuestra cafetería, nos tomamos muy en serio la privacidad y seguridad de la información de nuestros clientes. El contenido de este documento tiene como objetivo ofrecer una guía general sobre nuestras prácticas de recopilación, uso y protección de datos. Esta información no constituye asesoría legal, por lo que te recomendamos consultar a un especialista para elaborar una Política de Privacidad totalmente adaptada a tus necesidades y obligaciones legales.</p>
+                    </div>
+
+                    <div class="privacy-section">
+                        <h2>¿Qué Información Recopilamos?</h2>
+                        <p>Podemos recopilar:</p>
+                        <ul>
+                            <li>Datos personales básicos: nombre, correo electrónico, número de teléfono.</li>
+                            <li>Datos de compra: historial de consumos, métodos de pago, preferencias de bebidas o alimentos.</li>
+                            <li>Datos de navegación (si contamos con sitio web): dirección IP, cookies, tipo de dispositivo.</li>
+                            <li>Datos para programas de fidelidad: puntos, recompensas y actividad dentro del programa.</li>
+                        </ul>
+                    </div>
+
+                    <div class="privacy-section">
+                        <h2>¿Cómo Recolectamos Esta Información?</h2>
+                        <p>La recopilamos a través de:</p>
+                        <ul>
+                            <li>Formularios de contacto</li>
+                            <li>Pedidos en línea o vía aplicaciones</li>
+                            <li>Redes sociales y campañas digitales</li>
+                            <li>Suscripciones a newsletters o promociones</li>
+                            <li>Sistemas de fidelidad o tarjetas de cliente frecuente</li>
+                            <li>Cookies o herramientas similares (en caso de sitio web o app)</li>
+                        </ul>
+                    </div>
+
+                    <div class="privacy-section">
+                        <h2>¿Por Qué Recopilamos Estos Datos?</h2>
+                        <p>Utilizamos la información para:</p>
+                        <ul>
+                            <li>Procesar pedidos o reservas</li>
+                            <li>Ofrecer atención personalizada</li>
+                            <li>Mejorar nuestros productos y servicios</li>
+                            <li>Enviar promociones, descuentos o novedades</li>
+                            <li>Cumplir con obligaciones legales o fiscales</li>
+                            <li>Analizar hábitos de consumo para mejorar la experiencia del cliente</li>
+                        </ul>
+                    </div>
+
+                    <div class="privacy-section">
+                        <h2>¿Con Quién Compartimos tu Información?</h2>
+                        <p>Podemos compartir datos únicamente con:</p>
+                        <ul>
+                            <li>Proveedores de servicios de pago</li>
+                            <li>Plataformas de pedidos en línea</li>
+                            <li>Herramientas de marketing autorizadas</li>
+                            <li>Autoridades legales, únicamente cuando sea obligatorio</li>
+                        </ul>
+                        <p><strong>Nunca vendemos ni intercambiamos tu información personal.</strong></p>
+                    </div>
+
+                    <div class="privacy-section">
+                        <h2>Protección de Datos</h2>
+                        <p>Implementamos medidas físicas, digitales y administrativas para proteger tu información contra accesos no autorizados, uso indebido o divulgación.</p>
+                    </div>
+
+                    <div class="privacy-section">
+                        <h2>Privacidad de Menores</h2>
+                        <p>No recopilamos información intencionalmente de menores de edad. Si recibimos datos de un menor, los eliminaremos tan pronto lo identifiquemos.</p>
+                    </div>
+
+                    <div class="privacy-section">
+                        <h2>Derechos del Usuario</h2>
+                        <p>Como cliente, puedes solicitar:</p>
+                        <ul>
+                            <li>Acceso a tus datos</li>
+                            <li>Corrección de información incorrecta</li>
+                            <li>Eliminación de tus datos (cuando proceda legalmente)</li>
+                            <li>Cancelación de comunicaciones publicitarias</li>
+                        </ul>
+                        <p>Solo debes contactarnos a través de los canales oficiales de la cafetería.</p>
+                    </div>
+
+                    <div class="privacy-section">
+                        <h2>Actualizaciones a Esta Política</h2>
+                        <p>Podemos modificar esta Política de Privacidad periódicamente. Publicaremos cualquier cambio en nuestro sitio web o en nuestros canales oficiales.</p>
+                    </div>
+
+                    <div class="privacy-contact">
+                        <h3>Contacto</h3>
+                        <p>Si tienes preguntas sobre esta Política de Privacidad, contáctanos:</p>
+                        <p>📧 cafelementos@gmail.com<br>📞 993 426 3253</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- CART MODAL -->
+    <div class="cart-overlay" id="cartOverlay" onclick="toggleCart()"></div>
+    <div class="cart-modal" id="cartModal">
+        <div class="cart-header">
+            <h2>🛒 Carrito</h2>
+            <button class="close-cart" onclick="toggleCart()">✕</button>
+        </div>
+        <div class="cart-items" id="cartItems">
+            <div class="empty-cart">
+                <p style="font-size: 3rem; margin-bottom: 1rem;">🛒</p>
+                <p>Tu carrito está vacío</p>
+            </div>
+        </div>
+        <div class="cart-footer">
+            <div class="cart-total">
+                <span>Total:</span>
+                <span id="cartTotal">$0.00 MXN</span>
+            </div>
+            <button class="checkout-btn" onclick="openCheckout()">Proceder al Pago</button>
+        </div>
+    </div>
+
+    <!-- CHECKOUT MODAL -->
+    <div class="cart-overlay" id="checkoutOverlay" onclick="closeCheckout()"></div>
+    <div class="checkout-modal" id="checkoutModal">
+        <div class="checkout-header">
+            <h2>Finalizar Compra</h2>
+            <button class="close-cart" onclick="closeCheckout()">✕</button>
+        </div>
+        <div class="checkout-content">
+            <form class="checkout-form" id="checkoutForm" onsubmit="return false;">
+                <h3 style="margin-bottom: 1rem; font-size: 1.1rem;">📦 Información de Envío</h3>
+                
+                <div class="form-group">
+                    <label>Nombre Completo *</label>
+                    <input type="text" required id="checkoutName">
+                </div>
+                <div class="form-group">
+                    <label>Correo Electrónico *</label>
+                    <input type="email" required id="checkoutEmail">
+                </div>
+                <div class="form-group">
+                    <label>Teléfono *</label>
+                    <input type="tel" required id="checkoutPhone">
+                </div>
+                <div class="form-group">
+                    <label>Dirección de Entrega *</label>
+                    <input type="text" required id="checkoutAddress">
+                </div>
+                <div class="form-group">
+                    <label>Ciudad *</label>
+                    <input type="text" required id="checkoutCity">
+                </div>
+                <div class="form-group">
+                    <label>Código Postal *</label>
+                    <input type="text" required id="checkoutPostal">
+                </div>
+
+                <h3 style="margin-top: 2rem; margin-bottom: 1rem; font-size: 1.1rem;">💳 Método de Pago</h3>
+<div class="payment-methods">
+                <label class="payment-option">
+                    <input type="radio" name="paymentMethod" value="card" checked onchange="togglePaymentForm('card')">
+                    <span>💳 Tarjeta de Crédito/Débito</span>
+                </label>
+                <label class="payment-option">
+                    <input type="radio" name="paymentMethod" value="paypal" onchange="togglePaymentForm('paypal')">
+                    <span style="display: inline-flex; align-items: center; gap: 8px;">
+                        <span style="background: #0070ba; color: white; padding: 4px 12px; border-radius: 4px; font-weight: 600;">PayPal</span>
+                    </span>
+                </label>
+            </div>
+
+            <div id="cardPaymentForm">
+                <div class="form-group">
+                    <label>Número de Tarjeta *</label>
+                    <input type="text" required id="cardNumber" placeholder="1234 5678 9012 3456" maxlength="19">
+                </div>
+                
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                    <div class="form-group">
+                        <label>Fecha de Vencimiento *</label>
+                        <input type="text" required id="cardExpiry" placeholder="MM/AA" maxlength="5">
+                    </div>
+                    <div class="form-group">
+                        <label>CVV *</label>
+                        <input type="text" required id="cardCVV" placeholder="123" maxlength="4">
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label>Nombre en la Tarjeta *</label>
+                    <input type="text" required id="cardName">
+                </div>
+            </div>
+
+            <div id="paypalPaymentForm" style="display: none;">
+                <div class="paypal-info">
+                    <p style="margin-bottom: 1rem; color: #666;">Al confirmar el pedido, serás redirigido a PayPal para completar el pago de forma segura.</p>
+                    <div class="form-group">
+                        <label>Correo de PayPal *</label>
+                        <input type="email" id="paypalEmail" placeholder="tu@email.com">
+                    </div>
+                </div>
+            </div>
+            
+            <div class="order-summary">
+                <h3>📋 Resumen del Pedido</h3>
+                <div id="orderSummaryItems"></div>
+                <div class="summary-total">
+                    <span>Total:</span>
+                    <span id="orderTotal">$0.00 MXN</span>
+                </div>
+            </div>
+            
+            <button type="button" class="confirm-btn" onclick="confirmOrder()">✓ Confirmar Pedido</button>
+        </form>
+    </div>
+</div>
+
+<!-- SUCCESS MODAL -->
+<div class="cart-overlay" id="successOverlay"></div>
+<div class="success-modal" id="successModal">
+    <div class="success-icon">✓</div>
+    <h2>¡Pedido Confirmado!</h2>
+    <p>Tu pedido ha sido procesado exitosamente.</p>
+    <p id="paymentMethodText">Hemos enviado la confirmación y el ticket a tu correo electrónico.</p>
+    <p style="margin-top: 1rem;"><strong>Número de Orden:</strong></p>
+    <p style="font-size: 1.5rem; color: #F59026; font-weight: 700;" id="orderNumber"></p>
+    <button class="close-modal" onclick="closeSuccess()">Continuar Comprando</button>
+</div>
+
+<!-- FOOTER -->
+<footer>
+    <div class="footer-content">
+        <div class="footer-info">
+            <p style="color: white; font-size: 0.95rem; margin-bottom: 1rem;">cafelementos@gmail.com</p>
+            <p style="color: white; font-size: 0.95rem; margin-bottom: 2rem;">Villahermosa, Tab., México</p>
+            <p style="color: white; font-size: 0.95rem; margin-bottom: 0.5rem;">993 426 3253</p>
+            <div class="social-links">
+                <a href="https://facebook.com/cafelementos" target="_blank" title="Facebook">📘</a>
+                <a href="https://instagram.com/cafelementos" target="_blank" title="Instagram">📷</a>
+                <a href="https://twitter.com/cafelementos" target="_blank" title="Twitter">✖️</a>
+                <a href="https://tiktok.com/@cafelementos" target="_blank" title="TikTok">🎵</a>
+            </div>
+        </div>
+        <div class="footer-section">
+            <ul>
+                <li><a onclick="showPage('privacy')">Política de Privacidad</a></li>
+                <li><a href="#">Declaración de Accesibilidad</a></li>
+                <li><a href="#">Términos y Condiciones</a></li>
+                <li><a href="#">Política de Reembolso</a></li>
+                <li><a href="#">Política de Envío</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="footer-logo">Café Elementos</div>
+    <div class="footer-bottom">
+        © 2025 Café Elementos. Todos los derechos reservados.
+    </div>
+</footer>
+
+<!-- JavaScript -->
+<script src="js/main.js"></script>
+</body>
+</html>
