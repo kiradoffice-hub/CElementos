@@ -124,6 +124,8 @@ const translations = {
         
         // Nosotros
         'about.title': 'Acerca de Nosotros',
+        'about.text1': 'Bienvenido a Café Elementos, el lugar donde el café cobra vida. Nos dedicamos a ofrecer café de alta calidad con un toque especial que deleita tus sentidos.',
+        'about.text2': 'En Café Elementos, nos esforzamos por crear un ambiente acogedor donde te sientas como en casa.',
         
         // Contacto
         'contact.title': 'Contáctanos',
@@ -207,8 +209,8 @@ const translations = {
         
         // About
         'about.title': 'About Us',
-    'about.text1': 'Welcome to Café Elementos, the place where coffee comes to life. We are dedicated to offering high-quality coffee with a special touch that delights your senses. Our passion for coffee is reflected in every cup we prepare, seeking to provide you with a unique experience in every sip.',
-    'about.text2': 'At Café Elementos, we strive to create a welcoming environment where you feel at home. Our team of expert baristas is ready to guide you through our menu and recommend the perfect combination for your palate. Come and enjoy the true essence of coffee with us!',
+        'about.text1': 'Welcome to Café Elementos, the place where coffee comes to life. We are dedicated to offering high-quality coffee with a special touch that delights your senses. Our passion for coffee is reflected in every cup we prepare, seeking to provide you with a unique experience in every sip.',
+        'about.text2': 'At Café Elementos, we strive to create a welcoming environment where you feel at home. Our team of expert baristas is ready to guide you through our menu and recommend the perfect combination for your palate. Come and enjoy the true essence of coffee with us!',
         
         // Contact
         'contact.title': 'Contact Us',
