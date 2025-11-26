@@ -86,7 +86,191 @@ let selectedMenuSizes = {};
 let currentLanguage = 'es';
 let currentSearchTerm = '';
 let currentCategory = 'all';
+// ============================================
+// TRADUCCIONES
+// ============================================
+const translations = {
+    es: {
+        // Navegación
+        'nav.welcome': 'Bienvenido',
+        'nav.home': 'Inicio',
+        'nav.menu': 'Menú',
+        'nav.products': 'Productos',
+        'nav.more': 'Más',
+        'nav.main': 'Principal',
+        
+        // Página Bienvenido
+        'welcome.promo.badge': '🔥 PROMOCIÓN',
+        'welcome.promo.title': '¡2 Frappes por $120!',
+        'welcome.promo.subtitle': 'Disfruta de nuestra promoción especial por tiempo limitado',
+        'welcome.title': 'Bienvenido a Café Elementos',
+        'welcome.description': 'El lugar donde el café cobra vida. Nos dedicamos a ofrecer café de alta calidad con un toque especial que deleita tus sentidos. Descubre nuestra pasión por el café en cada taza que preparamos.',
+        'welcome.button': 'Explorar Nuestro Café',
+        
+        // Búsqueda
+        'search.placeholder': 'Buscar productos...',
+        'search.mainPlaceholder': 'Buscar café, bebidas, productos...',
+        'search.button': '🔍 Buscar',
+        'search.all': 'Todos',
+        'search.coffee': 'Café a Granel',
+        'search.drinks': 'Bebidas',
+        'search.noResults': 'No se encontraron resultados para',
+        
+        // Newsletter
+        'newsletter.title': 'SUSCRÍBETE',
+        'newsletter.subtitle': 'Regístrate al correo electrónico para no perderte de nuestros eventos 2025',
+        'newsletter.placeholder': 'Introduce tu correo electrónico aquí',
+        'newsletter.button': 'Enviar',
+        
+        // Nosotros
+        'about.title': 'Acerca de Nosotros',
+        
+        // Contacto
+        'contact.title': 'Contáctanos',
+        'contact.address': 'Dirección',
+        'contact.phone': 'Teléfono',
+        'contact.email': 'Correo',
+        'contact.form.name': 'Nombre',
+        'contact.form.lastName': 'Apellido',
+        'contact.form.email': 'Correo',
+        'contact.form.phone': 'Teléfono',
+        'contact.form.message': 'Mensaje',
+        'contact.form.submit': 'Enviar',
+        
+        // Menú
+        'menu.title': 'Nuestro Menú',
+        'menu.subtitle': 'Descubre nuestras deliciosas bebidas',
+        'menu.addToCart': '+ Agregar al carrito',
+        
+        // Productos
+        'products.title': 'Nuestros Productos',
+        
+        // Carrito
+        'cart.title': '🛒 Carrito',
+        'cart.empty': 'Tu carrito está vacío',
+        'cart.total': 'Total:',
+        'cart.checkout': 'Proceder al Pago',
+        
+        // Checkout
+        'checkout.title': 'Finalizar Compra',
+        'checkout.name': 'Nombre Completo *',
+        'checkout.email': 'Correo Electrónico *',
+        'checkout.phone': 'Teléfono *',
+        'checkout.address': 'Dirección de Entrega *',
+        'checkout.city': 'Ciudad *',
+        'checkout.postal': 'Código Postal *',
+        'checkout.confirm': '✓ Confirmar Pedido',
+        
+        // Chat
+        'chat.button': '¡Vamos a chatear!',
+        'chat.placeholder': 'Escribe tu mensaje...',
+        
+        // Notificaciones
+        'notify.emptyCart': 'Tu carrito está vacío',
+        'notify.emptyEmail': 'Por favor ingresa tu correo electrónico',
+        'notify.invalidEmail': 'Por favor ingresa un correo válido',
+        'notify.fillFields': 'Por favor completa todos los campos requeridos'
+    },
+    en: {
+        // Navigation
+        'nav.welcome': 'Welcome',
+        'nav.home': 'Home',
+        'nav.menu': 'Menu',
+        'nav.products': 'Products',
+        'nav.more': 'More',
+        'nav.main': 'Main',
+        
+        // Welcome Page
+        'welcome.promo.badge': '🔥 PROMOTION',
+        'welcome.promo.title': '2 Frappes for $120!',
+        'welcome.promo.subtitle': 'Enjoy our special promotion for a limited time',
+        'welcome.title': 'Welcome to Café Elementos',
+        'welcome.description': 'The place where coffee comes to life. We are dedicated to offering high-quality coffee with a special touch that delights your senses. Discover our passion for coffee in every cup we prepare.',
+        'welcome.button': 'Explore Our Coffee',
+        
+        // Search
+        'search.placeholder': 'Search products...',
+        'search.mainPlaceholder': 'Search coffee, drinks, products...',
+        'search.button': '🔍 Search',
+        'search.all': 'All',
+        'search.coffee': 'Bulk Coffee',
+        'search.drinks': 'Drinks',
+        'search.noResults': 'No results found for',
+        
+        // Newsletter
+        'newsletter.title': 'SUBSCRIBE',
+        'newsletter.subtitle': 'Sign up for our email list to stay updated on our 2025 events',
+        'newsletter.placeholder': 'Enter your email here',
+        'newsletter.button': 'Submit',
+        
+        // About
+        'about.title': 'About Us',
+        
+        // Contact
+        'contact.title': 'Contact Us',
+        'contact.address': 'Address',
+        'contact.phone': 'Phone',
+        'contact.email': 'Email',
+        'contact.form.name': 'First Name',
+        'contact.form.lastName': 'Last Name',
+        'contact.form.email': 'Email',
+        'contact.form.phone': 'Phone',
+        'contact.form.message': 'Message',
+        'contact.form.submit': 'Submit',
+        
+        // Menu
+        'menu.title': 'Our Menu',
+        'menu.subtitle': 'Discover our delicious drinks',
+        'menu.addToCart': '+ Add to cart',
+        
+        // Products
+        'products.title': 'Our Products',
+        
+        // Cart
+        'cart.title': '🛒 Cart',
+        'cart.empty': 'Your cart is empty',
+        'cart.total': 'Total:',
+        'cart.checkout': 'Proceed to Checkout',
+        
+        // Checkout
+        'checkout.title': 'Checkout',
+        'checkout.name': 'Full Name *',
+        'checkout.email': 'Email *',
+        'checkout.phone': 'Phone *',
+        'checkout.address': 'Delivery Address *',
+        'checkout.city': 'City *',
+        'checkout.postal': 'Postal Code *',
+        'checkout.confirm': '✓ Confirm Order',
+        
+        // Chat
+        'chat.button': "Let's chat!",
+        'chat.placeholder': 'Type your message...',
+        
+        // Notifications
+        'notify.emptyCart': 'Your cart is empty',
+        'notify.emptyEmail': 'Please enter your email',
+        'notify.invalidEmail': 'Please enter a valid email',
+        'notify.fillFields': 'Please complete all required fields'
+    }
+};
 
+function translate(key) {
+    return translations[currentLanguage][key] || key;
+}
+
+function applyTranslations() {
+    // Actualizar todos los elementos con data-translate
+    document.querySelectorAll('[data-translate]').forEach(element => {
+        const key = element.getAttribute('data-translate');
+        const translation = translate(key);
+        
+        if (element.tagName === 'INPUT' || element.tagName === 'TEXTAREA') {
+            element.placeholder = translation;
+        } else {
+            element.textContent = translation;
+        }
+    });
+}
 // ============================================
 // INICIALIZACIÓN
 // ============================================
@@ -388,17 +572,7 @@ function getDrinkTypeName(type) {
 function changeLanguage(lang) {
     currentLanguage = lang;
     localStorage.setItem('cafeElementosLanguage', lang);
-    
-    const principalText = document.querySelector('.principal-text');
-    const chatText = document.querySelector('.chat-text');
-    
-    if (lang === 'en') {
-        if (principalText) principalText.textContent = 'Main';
-        if (chatText) chatText.textContent = "Let's chat!";
-    } else {
-        if (principalText) principalText.textContent = 'Principal';
-        if (chatText) chatText.textContent = '¡Vamos a chatear!';
-    }
+    applyTranslations();
 }
 
 // ============================================
