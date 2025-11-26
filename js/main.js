@@ -259,17 +259,138 @@ function translate(key) {
 }
 
 function applyTranslations() {
-    // Actualizar todos los elementos con data-translate
-    document.querySelectorAll('[data-translate]').forEach(element => {
-        const key = element.getAttribute('data-translate');
-        const translation = translate(key);
-        
-        if (element.tagName === 'INPUT' || element.tagName === 'TEXTAREA') {
-            element.placeholder = translation;
-        } else {
-            element.textContent = translation;
+    const lang = currentLanguage;
+    
+    // Navegación
+    const navLinks = document.querySelectorAll('#navMenu a');
+    if (navLinks.length >= 5) {
+        navLinks[0].textContent = translate('nav.welcome');
+        navLinks[1].textContent = translate('nav.home');
+        navLinks[2].textContent = translate('nav.menu');
+        navLinks[3].textContent = translate('nav.products');
+        navLinks[4].textContent = translate('nav.more');
+    }
+    
+    // Principal text
+    const principalText = document.querySelector('.principal-text');
+    if (principalText) principalText.textContent = translate('nav.main');
+    
+    // Chat button
+    const chatText = document.querySelector('.chat-text');
+    if (chatText) chatText.textContent = translate('chat.button');
+    
+    // Welcome page
+    const welcomeTitle = document.querySelector('#page-bienvenido h1');
+    if (welcomeTitle) welcomeTitle.textContent = translate('welcome.title');
+    
+    const welcomeDesc = document.querySelector('#page-bienvenido .welcome-content > p');
+    if (welcomeDesc) welcomeDesc.textContent = translate('welcome.description');
+    
+    const welcomeBtn = document.querySelector('.welcome-btn');
+    if (welcomeBtn) welcomeBtn.textContent = translate('welcome.button');
+    
+    const promoBadge = document.querySelector('.promotion-badge');
+    if (promoBadge) promoBadge.textContent = translate('welcome.promo.badge');
+    
+    const promoTitle = document.querySelector('.promotion-content h3');
+    if (promoTitle) promoTitle.textContent = translate('welcome.promo.title');
+    
+    const promoSubtitle = document.querySelector('.promotion-content > p');
+    if (promoSubtitle) promoSubtitle.textContent = translate('welcome.promo.subtitle');
+    
+    // Newsletter
+    const newsletterTitle = document.querySelector('.hero h1');
+    if (newsletterTitle) newsletterTitle.textContent = translate('newsletter.title');
+    
+    const newsletterSubtitle = document.querySelector('.hero p');
+    if (newsletterSubtitle) newsletterSubtitle.textContent = translate('newsletter.subtitle');
+    
+    const newsletterBtn = document.querySelector('.newsletter button');
+    if (newsletterBtn) newsletterBtn.textContent = translate('newsletter.button');
+    
+    const newsletterInput = document.getElementById('newsletterEmail');
+    if (newsletterInput) newsletterInput.placeholder = translate('newsletter.placeholder');
+    
+    // Search inputs
+    const searchInput = document.getElementById('searchInput');
+    if (searchInput) searchInput.placeholder = translate('search.placeholder');
+    
+    const mainSearchInput = document.getElementById('mainSearchInput');
+    if (mainSearchInput) mainSearchInput.placeholder = translate('search.mainPlaceholder');
+    
+    // Contact section
+    const contactTitles = document.querySelectorAll('.contact-container h2');
+    contactTitles.forEach(title => {
+        if (title.textContent.includes('Contáctanos') || title.textContent.includes('Contact')) {
+            title.textContent = translate('contact.title');
         }
     });
+    
+    // About section
+    const aboutTitles = document.querySelectorAll('.about-content h2');
+    aboutTitles.forEach(title => {
+        if (title.textContent.includes('Acerca') || title.textContent.includes('About')) {
+            title.textContent = translate('about.title');
+        }
+    });
+    
+    // Menu page
+    const menuTitle = document.querySelector('.menu-hero h1');
+    if (menuTitle) menuTitle.textContent = translate('menu.title');
+    
+    const menuSubtitle = document.querySelector('.menu-hero p');
+    if (menuSubtitle) menuSubtitle.textContent = translate('menu.subtitle');
+    
+    // Products page
+    const productsTitle = document.querySelector('#page-productos h2');
+    if (productsTitle) productsTitle.textContent = translate('products.title');
+    
+    // Cart
+    const cartTitle = document.querySelector('.cart-header h2');
+    if (cartTitle) cartTitle.innerHTML = translate('cart.title');
+    
+    const cartTotalLabel = document.querySelector('.cart-total span:first-child');
+    if (cartTotalLabel) cartTotalLabel.textContent = translate('cart.total');
+    
+    const checkoutBtn = document.querySelector('.checkout-btn');
+    if (checkoutBtn) checkoutBtn.textContent = translate('cart.checkout');
+    
+    // Checkout
+    const checkoutTitle = document.querySelector('.checkout-header h2');
+    if (checkoutTitle) checkoutTitle.textContent = translate('checkout.title');
+    
+    // Contact form placeholders
+    const contactName = document.getElementById('contactName');
+    if (contactName) contactName.placeholder = translate('contact.form.name');
+    
+    const contactLastName = document.getElementById('contactLastName');
+    if (contactLastName) contactLastName.placeholder = translate('contact.form.lastName');
+    
+    const contactEmail = document.getElementById('contactEmail');
+    if (contactEmail) contactEmail.placeholder = translate('contact.form.email');
+    
+    const contactPhone = document.getElementById('contactPhone');
+    if (contactPhone) contactPhone.placeholder = translate('contact.form.phone');
+    
+    const contactMessage = document.getElementById('contactMessage');
+    if (contactMessage) contactMessage.placeholder = translate('contact.form.message');
+    
+    // Chat placeholder
+    const chatInput = document.getElementById('chatInput');
+    if (chatInput) chatInput.placeholder = translate('chat.placeholder');
+    
+    // Category buttons
+    const categoryBtns = document.querySelectorAll('.category-btn');
+    if (categoryBtns.length >= 3) {
+        categoryBtns[0].textContent = translate('search.all');
+        categoryBtns[1].textContent = translate('search.coffee');
+        categoryBtns[2].textContent = translate('search.drinks');
+    }
+    
+    // Re-render cart and menu if they're visible
+    if (cart.length > 0) {
+        renderCartItems();
+    }
 }
 // ============================================
 // INICIALIZACIÓN
@@ -312,6 +433,8 @@ function init() {
     renderMenuItems();
     showPage('bienvenido');
     updateCartCount();
+   
+   applyTranslations();
 }
 
 // ============================================
