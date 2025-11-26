@@ -172,6 +172,8 @@ const translations = {
         'notify.fillFields': 'Por favor completa todos los campos requeridos'
     },
     en: {
+
+
         // Navigation
         'nav.welcome': 'Welcome',
         'nav.home': 'Home',
@@ -205,6 +207,8 @@ const translations = {
         
         // About
         'about.title': 'About Us',
+    'about.text1': 'Welcome to Café Elementos, the place where coffee comes to life. We are dedicated to offering high-quality coffee with a special touch that delights your senses. Our passion for coffee is reflected in every cup we prepare, seeking to provide you with a unique experience in every sip.',
+    'about.text2': 'At Café Elementos, we strive to create a welcoming environment where you feel at home. Our team of expert baristas is ready to guide you through our menu and recommend the perfect combination for your palate. Come and enjoy the true essence of coffee with us!',
         
         // Contact
         'contact.title': 'Contact Us',
@@ -333,7 +337,11 @@ function applyTranslations() {
             title.textContent = translate('about.title');
         }
     });
-    
+    const aboutParagraphs = document.querySelectorAll('.about-content p');
+    if (aboutParagraphs.length >= 2) {
+    aboutParagraphs[0].textContent = translate('about.text1');
+    aboutParagraphs[1].textContent = translate('about.text2');
+    }
     // Menu page
     const menuTitle = document.querySelector('.menu-hero h1');
     if (menuTitle) menuTitle.textContent = translate('menu.title');
