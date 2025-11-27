@@ -51,28 +51,28 @@ const products = [
 // ============================================
 const menuItems = {
     frappes: [
-        { id: 101, name: 'Frapuccino', price: 75, category: 'drinks', type: 'frappe' },
-        { id: 102, name: 'Cajeta', price: 75, category: 'drinks', type: 'frappe' },
-        { id: 103, name: 'Oreo', price: 75, category: 'drinks', type: 'frappe' },
-        { id: 104, name: 'Moca', price: 75, category: 'drinks', type: 'frappe' }
+        { id: 101, name: 'Frapuccino', price: 75, category: 'drinks', type: 'frappe', image: 'images/frappe-frapuccino.jpg' },
+        { id: 102, name: 'Cajeta', price: 75, category: 'drinks', type: 'frappe', image: 'images/frappe-cajeta.jpg' },
+        { id: 103, name: 'Oreo', price: 75, category: 'drinks', type: 'frappe', image: 'images/frappe-oreo.jpg' },
+        { id: 104, name: 'Moca', price: 75, category: 'drinks', type: 'frappe', image: 'images/frappe-moca.jpg' }
     ],
     hotCoffee: [
-        { id: 201, name: 'Espresso', prices: { 'Chico': 45, 'Grande': 48 }, category: 'drinks', type: 'hot-coffee' },
-        { id: 202, name: 'Latte', prices: { 'Chico': 68, 'Grande': 72 }, category: 'drinks', type: 'hot-coffee' },
-        { id: 203, name: 'Espresso cortado', price: 48, category: 'drinks', type: 'hot-coffee' },
-        { id: 204, name: 'Capuchino', price: 65, category: 'drinks', type: 'hot-coffee' },
-        { id: 205, name: 'Americano', price: 48, category: 'drinks', type: 'hot-coffee' },
-        { id: 206, name: 'Moca', prices: { 'Chico': 68, 'Grande': 72 }, category: 'drinks', type: 'hot-coffee' },
-        { id: 207, name: 'Latte caramelo', price: 72, category: 'drinks', type: 'hot-coffee' },
-        { id: 208, name: 'Choco-latte', prices: { 'Chico': 68, 'Grande': 72 }, category: 'drinks', type: 'hot-coffee' },
-        { id: 209, name: 'Chocolatada', prices: { 'Chico': 68, 'Grande': 72 }, category: 'drinks', type: 'hot-coffee' }
+        { id: 201, name: 'Espresso', prices: { 'Chico': 45, 'Grande': 48 }, category: 'drinks', type: 'hot-coffee', image: 'images/espresso.jpg' },
+        { id: 202, name: 'Latte', prices: { 'Chico': 68, 'Grande': 72 }, category: 'drinks', type: 'hot-coffee', image: 'images/latte.jpg' },
+        { id: 203, name: 'Espresso cortado', price: 48, category: 'drinks', type: 'hot-coffee', image: 'images/espresso-cortado.jpg' },
+        { id: 204, name: 'Capuchino', price: 65, category: 'drinks', type: 'hot-coffee', image: 'images/capuchino.jpg' },
+        { id: 205, name: 'Americano', price: 48, category: 'drinks', type: 'hot-coffee', image: 'images/americano.jpg' },
+        { id: 206, name: 'Moca', prices: { 'Chico': 68, 'Grande': 72 }, category: 'drinks', type: 'hot-coffee', image: 'images/moca.jpg' },
+        { id: 207, name: 'Latte caramelo', price: 72, category: 'drinks', type: 'hot-coffee', image: 'images/latte-caramelo.jpg' },
+        { id: 208, name: 'Choco-latte', prices: { 'Chico': 68, 'Grande': 72 }, category: 'drinks', type: 'hot-coffee', image: 'images/choco-latte.jpg' },
+        { id: 209, name: 'Chocolatada', prices: { 'Chico': 68, 'Grande': 72 }, category: 'drinks', type: 'hot-coffee', image: 'images/chocolatada.jpg' }
     ],
     teas: [
-        { id: 301, name: 'Té Negro (Earl Grey)', prices: { 'Chico': 68, 'Grande': 72 }, category: 'drinks', type: 'tea' },
-        { id: 302, name: 'Té Negro Chai', prices: { 'Chico': 68, 'Grande': 72 }, category: 'drinks', type: 'tea' },
-        { id: 303, name: 'Té Verde Flamingo Limonada', prices: { 'Chico': 68, 'Grande': 72 }, category: 'drinks', type: 'tea' },
-        { id: 304, name: 'Matcha', prices: { 'Chico': 68, 'Grande': 72 }, category: 'drinks', type: 'tea' },
-        { id: 305, name: 'Variedad de Tisanas', prices: { 'Chico': 68, 'Grande': 72 }, category: 'drinks', type: 'tea' }
+        { id: 301, name: 'Té Negro (Earl Grey)', prices: { 'Chico': 68, 'Grande': 72 }, category: 'drinks', type: 'tea', image: 'images/te-negro.jpg' },
+        { id: 302, name: 'Té Negro Chai', prices: { 'Chico': 68, 'Grande': 72 }, category: 'drinks', type: 'tea', image: 'images/te-chai.jpg' },
+        { id: 303, name: 'Té Verde Flamingo Limonada', prices: { 'Chico': 68, 'Grande': 72 }, category: 'drinks', type: 'tea', image: 'images/te-verde.jpg' },
+        { id: 304, name: 'Matcha', prices: { 'Chico': 68, 'Grande': 72 }, category: 'drinks', type: 'tea', image: 'images/matcha.jpg' },
+        { id: 305, name: 'Variedad de Tisanas', prices: { 'Chico': 68, 'Grande': 72 }, category: 'drinks', type: 'tea', image: 'images/tisanas.jpg' }
     ]
 };
 
@@ -824,23 +824,30 @@ function createMenuItem(item) {
     
     return `
         <div class="menu-item" data-menu-id="${item.id}">
-            <div class="menu-item-header">
-                <div class="menu-item-name">${item.name}</div>
-                <div class="menu-item-price" id="menu-price-${item.id}">$${currentPrice}.00</div>
-            </div>
-            ${hasMultipleSizes ? `
-                <div class="menu-item-sizes">
-                    ${Object.keys(item.prices).map(size => `
-                        <button class="size-btn ${selectedSize === size ? 'active' : ''}" 
-                                onclick="selectMenuSize(${item.id}, '${size}')">
-                            ${size}
-                        </button>
-                    `).join('')}
+            ${item.image ? `
+                <div class="menu-item-image">
+                    <img src="${item.image}" alt="${item.name}" onerror="this.style.display='none'; this.parentElement.innerHTML='<div style=\\'font-size:3rem;display:flex;align-items:center;justify-content:center;height:100%\\'>${item.type === 'frappe' ? '🧊' : item.type === 'tea' ? '🍵' : '☕'}</div>'">
                 </div>
             ` : ''}
-            <button class="menu-item-add" onclick="addMenuToCart(${item.id})">
-                + Agregar al carrito
-            </button>
+            <div class="menu-item-content">
+                <div class="menu-item-header">
+                    <div class="menu-item-name">${item.name}</div>
+                    <div class="menu-item-price" id="menu-price-${item.id}">$${currentPrice}.00</div>
+                </div>
+                ${hasMultipleSizes ? `
+                    <div class="menu-item-sizes">
+                        ${Object.keys(item.prices).map(size => `
+                            <button class="size-btn ${selectedSize === size ? 'active' : ''}" 
+                                    onclick="selectMenuSize(${item.id}, '${size}')">
+                                ${size}
+                            </button>
+                        `).join('')}
+                    </div>
+                ` : ''}
+                <button class="menu-item-add" onclick="addMenuToCart(${item.id})">
+                    + Agregar al carrito
+                </button>
+            </div>
         </div>
     `;
 }
