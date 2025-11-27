@@ -661,7 +661,7 @@ function createSearchResultCard(item) {
                 </div>
             </div>
         `;
-    } else {
+   } else {
         const hasMultipleSizes = item.prices && typeof item.prices === 'object';
         const selectedSize = selectedMenuSizes[item.id];
         const currentPrice = hasMultipleSizes ? item.prices[selectedSize] : item.price;
