@@ -2198,4 +2198,21 @@ padding: 0 1.5rem;
     .mission-vision {
         gap: 1.5rem;
     }
+   /* Estilos adicionales para secciones de políticas */
+.privacy-content h3 {
+    font-size: 1.3rem;
+    font-weight: 600;
+    margin: 1.5rem 0 0.8rem;
+    color: #000;
+}
+
+.privacy-content ol {
+    margin: 1rem 0 1rem 2rem;
+    list-style-type: decimal;
+}
+
+.privacy-content ol li {
+    margin-bottom: 0.5rem;
+    color: #333;
+}
 }
