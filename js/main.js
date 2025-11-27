@@ -354,11 +354,6 @@ function applyTranslations() {
     });
     
     // About section
-    const aboutTitles = document.querySelectorAll('.about-content h2');
-    aboutTitles.forEach(title => {
-        if (title.textContent.includes('Acerca') || title.textContent.includes('About')) {
-            title.textContent = translate('about.title');
-        }
    
 // About content - renderizar completamente
 const aboutContents = document.querySelectorAll('.about-content');
