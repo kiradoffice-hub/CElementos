@@ -123,10 +123,21 @@ const translations = {
         'newsletter.button': 'Enviar',
         
         // Nosotros
-        'about.title': 'Acerca de Nosotros',
-        'about.text1': 'Bienvenido a Café Elementos, el lugar donde el café cobra vida. Nos dedicamos a ofrecer café de alta calidad con un toque especial que deleita tus sentidos.',
-        'about.text2': 'En Café Elementos, nos esforzamos por crear un ambiente acogedor donde te sientas como en casa.',
-        
+'about.title': 'Acerca de Nosotros',
+'about.subtitle': '☕ CAFÉ ELEMENTOS',
+'about.brief': 'Breve descripción de la empresa',
+'about.description1': 'Café Elementos es una cafetería inspirada en la pasión por el buen café y la convivencia auténtica. Nos dedicamos a crear bebidas y productos elaborados con granos seleccionados, procesos cuidados y sabores únicos que conectan con tus sentidos desde el primer sorbo.',
+'about.description2': 'Nuestro propósito es que cada visita sea una experiencia cálida, agradable y significativa. Ya sea que vengas a relajarte, trabajar, compartir con amigos o simplemente disfrutar de un buen café, en Café Elementos siempre encontrarás un ambiente acogedor y un servicio atento.',
+'about.description3': 'Nos encontramos en Villahermosa, Tabasco, ofreciendo siempre la mejor actitud, un trato amable y el compromiso de que tu bebida será preparada con dedicación, calidad y cariño.',
+'about.mission.title': '🎯 Misión',
+'about.mission.text1': 'Crear bebidas y productos de café de alta calidad, elaborados con granos cuidadosamente seleccionados, recetas originales y técnicas precisas que respeten cada uno de los elementos del proceso.',
+'about.mission.text2': 'Buscamos aprovechar al máximo cada ingrediente para ofrecer sabores auténticos, equilibrados y memorables. Queremos ser parte de tus momentos favoritos: desde la primera taza de la mañana hasta la charla de la tarde, generando experiencias que te inviten a volver con la confianza de que siempre recibirás lo mejor.',
+'about.mission.text3': 'Nuestro compromiso es mantener procesos limpios, seguros, consistentes y responsables, para que en cada taza encuentres dedicación, pasión y un estándar de excelencia.',
+'about.vision.title': '🌎 Visión',
+'about.vision.text1': 'Convertirnos en una cadena de cafeterías reconocida a nivel nacional e internacional por la calidad de nuestros productos, el servicio excepcional y el respeto por las personas y el entorno.',
+'about.vision.text2': 'Aspiramos a ser una marca líder, ética y confiable en el mundo del café; un referente que inspire a trabajar con pasión, cuidado, responsabilidad y sentido humano.',
+'about.vision.text3': 'Queremos que Café Elementos sea un espacio donde el sabor, la experiencia y los valores se unan para crear una identidad sólida y memorable.',
+       
         // Contacto
         'contact.title': 'Contáctanos',
         'contact.address': 'Dirección',
@@ -208,10 +219,20 @@ const translations = {
         'newsletter.button': 'Submit',
         
         // About
-        'about.title': 'About Us',
-        'about.text1': 'Welcome to Café Elementos, the place where coffee comes to life. We are dedicated to offering high-quality coffee with a special touch that delights your senses. Our passion for coffee is reflected in every cup we prepare, seeking to provide you with a unique experience in every sip.',
-        'about.text2': 'At Café Elementos, we strive to create a welcoming environment where you feel at home. Our team of expert baristas is ready to guide you through our menu and recommend the perfect combination for your palate. Come and enjoy the true essence of coffee with us!',
-        
+'about.title': 'About Us',
+'about.subtitle': '☕ CAFÉ ELEMENTOS',
+'about.brief': 'Brief company description',
+'about.description1': 'Café Elementos is a coffee shop inspired by a passion for good coffee and authentic connection. We create drinks and products crafted with selected beans, careful processes, and unique flavors that connect with your senses from the first sip.',
+'about.description2': 'Our purpose is to make every visit a warm, pleasant, and meaningful experience. Whether you come to relax, work, share with friends, or simply enjoy good coffee, at Café Elementos you will always find a welcoming atmosphere and attentive service.',
+'about.description3': 'We are located in Villahermosa, Tabasco, always offering the best attitude, friendly treatment, and the commitment that your drink will be prepared with dedication, quality, and care.',
+'about.mission.title': '🎯 Mission',
+'about.mission.text1': 'Create high-quality coffee drinks and products, crafted with carefully selected beans, original recipes, and precise techniques that respect each element of the process.',
+'about.mission.text2': 'We seek to maximize every ingredient to offer authentic, balanced, and memorable flavors. We want to be part of your favorite moments: from the first cup in the morning to the afternoon chat, generating experiences that invite you to return with the confidence that you will always receive the best.',
+'about.mission.text3': 'Our commitment is to maintain clean, safe, consistent, and responsible processes, so that in every cup you find dedication, passion, and a standard of excellence.',
+'about.vision.title': '🌎 Vision',
+'about.vision.text1': 'Become a coffee shop chain recognized nationally and internationally for the quality of our products, exceptional service, and respect for people and the environment.',
+'about.vision.text2': 'We aspire to be a leading, ethical, and reliable brand in the coffee world; a reference that inspires working with passion, care, responsibility, and human sense.',
+'about.vision.text3': 'We want Café Elementos to be a space where flavor, experience, and values come together to create a solid and memorable identity.',
         // Contact
         'contact.title': 'Contact Us',
         'contact.address': 'Address',
@@ -339,12 +360,43 @@ function applyTranslations() {
             title.textContent = translate('about.title');
         }
    
-    const aboutParagraphs = document.querySelectorAll('.about-content p');
-    if (aboutParagraphs.length >= 2) {
-    aboutParagraphs[0].textContent = translate('about.text1');
-    aboutParagraphs[1].textContent = translate('about.text2');
+// About content - renderizar completamente
+const aboutContents = document.querySelectorAll('.about-content');
+aboutContents.forEach(aboutContent => {
+    // Mantener el título
+    const title = aboutContent.querySelector('h2');
+    if (title) {
+        title.textContent = translate('about.title');
     }
-        });
+    
+    // Reemplazar todo el contenido después del título
+    const contentHTML = `
+        <h3 style="font-size: 1.5rem; margin-bottom: 1rem; color: #000;">${translate('about.subtitle')}</h3>
+        <h4 style="font-size: 1.1rem; margin-bottom: 1rem; color: #666; font-weight: 600;">${translate('about.brief')}</h4>
+        <p style="margin-bottom: 1rem;">${translate('about.description1')}</p>
+        <p style="margin-bottom: 1rem;">${translate('about.description2')}</p>
+        <p style="margin-bottom: 2rem;">${translate('about.description3')}</p>
+        
+        <h3 style="font-size: 1.4rem; margin: 2rem 0 1rem; color: #000;">${translate('about.mission.title')}</h3>
+        <p style="margin-bottom: 1rem;">${translate('about.mission.text1')}</p>
+        <p style="margin-bottom: 1rem;">${translate('about.mission.text2')}</p>
+        <p style="margin-bottom: 2rem;">${translate('about.mission.text3')}</p>
+        
+        <h3 style="font-size: 1.4rem; margin: 2rem 0 1rem; color: #000;">${translate('about.vision.title')}</h3>
+        <p style="margin-bottom: 1rem;">${translate('about.vision.text1')}</p>
+        <p style="margin-bottom: 1rem;">${translate('about.vision.text2')}</p>
+        <p style="margin-bottom: 1rem;">${translate('about.vision.text3')}</p>
+    `;
+    
+    // Limpiar todo excepto el h2
+    const elementsToRemove = aboutContent.querySelectorAll('p, h3, h4');
+    elementsToRemove.forEach(el => el.remove());
+    
+    // Insertar nuevo contenido después del h2
+    if (title) {
+        title.insertAdjacentHTML('afterend', contentHTML);
+    }
+});
     // Menu page
     const menuTitle = document.querySelector('.menu-hero h1');
     if (menuTitle) menuTitle.textContent = translate('menu.title');
