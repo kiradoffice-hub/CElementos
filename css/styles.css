@@ -647,11 +647,10 @@ nav a:hover {
     background: white;
     border: 2px solid #f0f0f0;
     border-radius: 8px;
-    padding: 1.5rem;
+    padding: 0;               /* ← CAMBIAR A 0 */
     transition: all 0.3s;
     position: relative;
 }
-
 .menu-item:hover {
     border-color: #C0FC4F;
     transform: translateY(-3px);
@@ -2249,6 +2248,6 @@ padding: 0 1.5rem;
     flex: 1;
     display: flex;
     flex-direction: column;
-    padding: 1.5rem;
+    padding: 1.5rem;          /* ← El padding va AQUÍ */
 }
 }
