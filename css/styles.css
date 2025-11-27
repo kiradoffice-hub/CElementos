@@ -639,17 +639,23 @@ nav a:hover {
 
 .menu-items {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
     gap: 1.5rem;
+    align-items: start;  /* ← AGREGAR ESTO */
 }
 
 .menu-item {
     background: white;
     border: 2px solid #f0f0f0;
     border-radius: 8px;
-    padding: 0;               /* ← CAMBIAR A 0 */
+    padding: 0;
     transition: all 0.3s;
     position: relative;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    width: 100%;        /* ← AGREGAR */
+    max-width: 100%;    /* ← AGREGAR */
 }
 .menu-item:hover {
     border-color: #C0FC4F;
@@ -2240,16 +2246,18 @@ padding: 0 1.5rem;
     border-radius: 8px 8px 0 0;
     flex-shrink: 0;
     position: relative;
+    max-width: 100%;    /* ← AGREGAR */
 }
 
 .menu-item-image img {
     width: 100%;
     height: 100%;
-    object-fit: cover;        /* Recorta la imagen para llenar el contenedor */
-    object-position: center;  /* Centra la imagen */
+    object-fit: cover;
+    object-position: center;
     display: block;
-    min-height: 200px;        /* Fuerza altura mínima */
-    max-height: 200px;        /* Fuerza altura máxima */
+    min-height: 200px;
+    max-height: 200px;
+    max-width: 100%;    /* ← AGREGAR */
 }
 
 .menu-item-content {
