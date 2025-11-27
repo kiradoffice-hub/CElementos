@@ -673,7 +673,8 @@ function createSearchResultCard(item) {
                         ${item.type === 'frappe' ? '🧊' : item.type === 'tea' ? '🍵' : '☕'}
                     </div>
                 </div>
-
+    `;
+    }
 function navigateToProduct(type, id) {
     if (type === 'coffee') {
         showPage('productos');
