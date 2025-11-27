@@ -2069,4 +2069,102 @@ padding: 0 1.5rem;
 .gallery-item {
     height: 300px;
 }
+   /* ============================================
+   SOLUCIÓN PARA BOTÓN DE CARRITO EN MÓVIL
+   ============================================ */
+
+/* Ajustes para el modal del carrito en móvil */
+@media (max-width: 968px) {
+    .cart-modal {
+        width: 100%;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+    }
+    
+    .cart-items {
+        flex: 1;
+        overflow-y: auto;
+        padding: 1rem;
+        /* Asegurar que haya espacio para el footer */
+        padding-bottom: 2rem;
+        /* Altura máxima para que el footer siempre sea visible */
+        max-height: calc(100vh - 250px);
+    }
+    
+    .cart-footer {
+        /* Fijar el footer al fondo */
+        position: sticky;
+        bottom: 0;
+        background: white;
+        padding: 1.2rem 1.5rem;
+        border-top: 2px solid #eee;
+        /* Sombra para que destaque */
+        box-shadow: 0 -3px 10px rgba(0,0,0,0.1);
+        z-index: 10;
+        /* Asegurar que no se encoja */
+        flex-shrink: 0;
+    }
+    
+    .cart-total {
+        margin-bottom: 1rem;
+        font-size: 1.2rem;
+    }
+    
+    .checkout-btn {
+        width: 100%;
+        padding: 1.2rem;
+        font-size: 1.1rem;
+        border-radius: 8px;
+        /* Hacer el botón más grande y fácil de tocar */
+        min-height: 50px;
+    }
+    
+    /* Ajustar el header para que sea más compacto */
+    .cart-header {
+        padding: 1.2rem 1.5rem;
+        flex-shrink: 0;
+    }
+    
+    .cart-header h2 {
+        font-size: 1.3rem;
+    }
+}
+
+/* Ajustes específicos para iPhones pequeños */
+@media (max-width: 480px) {
+    .cart-items {
+        /* Reducir aún más la altura máxima en pantallas pequeñas */
+        max-height: calc(100vh - 230px);
+        padding: 0.8rem;
+    }
+    
+    .cart-footer {
+        padding: 1rem 1.2rem;
+    }
+    
+    .cart-header {
+        padding: 1rem 1.2rem;
+    }
+    
+    .cart-item {
+        padding: 0.8rem;
+    }
+    
+    .cart-item-image {
+        width: 60px;
+        height: 60px;
+        font-size: 2rem;
+    }
+}
+
+/* Alternativa: Botón flotante adicional (opcional) */
+@media (max-width: 968px) {
+    /* Si prefieres tener un botón flotante adicional más visible */
+    .cart-modal::after {
+        content: '';
+        display: block;
+        height: 100px; /* Espacio extra al final del scroll */
+    }
+}
 }
