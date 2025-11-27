@@ -2216,6 +2216,11 @@ padding: 0 1.5rem;
     color: #333;
 }
    /* Estilos para imágenes en items del menú */
+}
+
+/* ============================================
+   ESTILOS PARA IMÁGENES EN ITEMS DEL MENÚ
+   ============================================ */
 .menu-item {
     display: flex;
     flex-direction: column;
@@ -2229,6 +2234,7 @@ padding: 0 1.5rem;
     overflow: hidden;
     border-radius: 8px 8px 0 0;
     margin: -1.5rem -1.5rem 1rem -1.5rem;
+    flex-shrink: 0;
 }
 
 .menu-item-image img {
