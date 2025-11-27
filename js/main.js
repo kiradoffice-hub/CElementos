@@ -666,29 +666,13 @@ function createSearchResultCard(item) {
         const selectedSize = selectedMenuSizes[item.id];
         const currentPrice = hasMultipleSizes ? item.prices[selectedSize] : item.price;
         
-        // Usar imagen real si existe, si no mostrar emoji de respaldo
-        const imageHTML = item.image 
-            ? `<img src="${item.image}" alt="${item.name}" onerror="this.style.display='none'; this.parentElement.innerHTML='<div style=\\'font-size:3rem;display:flex;align-items:center;justify-content:center;height:100%\\'>${item.type === 'frappe' ? '🧊' : item.type === 'tea' ? '🍵' : '☕'}</div>'">` 
-            : `<div style="font-size:3rem;display:flex;align-items:center;justify-content:center;height:100%;background:#f5f5f5;border-radius:8px;">
-                ${item.type === 'frappe' ? '🧊' : item.type === 'tea' ? '🍵' : '☕'}
-            </div>`;
-        
         return `
             <div class="search-result-card drink-card" onclick="navigateToProduct('drink', ${item.id})">
                 <div class="result-image">
-                    ${imageHTML}
+                    <div style="font-size:3rem;display:flex;align-items:center;justify-content:center;height:100%;background:#f5f5f5;border-radius:8px;">
+                        ${item.type === 'frappe' ? '🧊' : item.type === 'tea' ? '🍵' : '☕'}
+                    </div>
                 </div>
-                <div class="result-info">
-                    <h4>${item.name}</h4>
-                    <p class="result-type">${getDrinkTypeName(item.type)}</p>
-                    <p class="result-price">$${currentPrice}.00</p>
-                    <button class="result-add-btn" onclick="event.stopPropagation(); addMenuToCart(${item.id})">
-                        Agregar al carrito
-                    </button>
-                </div>
-            </div>
-        `;
-    }
 
 function navigateToProduct(type, id) {
     if (type === 'coffee') {
