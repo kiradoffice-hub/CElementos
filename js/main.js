@@ -353,51 +353,11 @@ function applyTranslations() {
         }
     });
     
-   // About content - solo actualizar textos sin destruir estructura
-const aboutContents = document.querySelectorAll('.about-content');
-aboutContents.forEach(aboutContent => {
-    const title = aboutContent.querySelector('h2');
-    if (title) {
+   // About section - solo título
+const aboutTitles = document.querySelectorAll('.about-content h2');
+aboutTitles.forEach(title => {
+    if (title.textContent.includes('Acerca') || title.textContent.includes('About')) {
         title.textContent = translate('about.title');
-    }
-    
-    // Si ya existe el contenido completo, solo actualizar
-    const paragraphs = aboutContent.querySelectorAll('p');
-    const h3s = aboutContent.querySelectorAll('h3');
-    
-    // Si no tiene suficientes elementos, crear la estructura completa
-    if (paragraphs.length < 3 && h3s.length < 3) {
-        // Limpiar solo los p existentes
-        paragraphs.forEach(p => p.remove());
-        
-        // Crear nuevo contenido
-        const contentHTML = `
-            <h3 style="font-size: 1.5rem; margin-bottom: 1rem; color: #000;">${translate('about.subtitle')}</h3>
-            <h4 style="font-size: 1.1rem; margin-bottom: 1rem; color: #666; font-weight: 600;">${translate('about.brief')}</h4>
-            <p style="margin-bottom: 1rem;">${translate('about.description1')}</p>
-            <p style="margin-bottom: 1rem;">${translate('about.description2')}</p>
-            <p style="margin-bottom: 2rem;">${translate('about.description3')}</p>
-            
-            <h3 style="font-size: 1.4rem; margin: 2rem 0 1rem; color: #000;">${translate('about.mission.title')}</h3>
-            <p style="margin-bottom: 1rem;">${translate('about.mission.text1')}</p>
-            <p style="margin-bottom: 1rem;">${translate('about.mission.text2')}</p>
-            <p style="margin-bottom: 2rem;">${translate('about.mission.text3')}</p>
-            
-            <h3 style="font-size: 1.4rem; margin: 2rem 0 1rem; color: #000;">${translate('about.vision.title')}</h3>
-            <p style="margin-bottom: 1rem;">${translate('about.vision.text1')}</p>
-            <p style="margin-bottom: 1rem;">${translate('about.vision.text2')}</p>
-            <p style="margin-bottom: 1rem;">${translate('about.vision.text3')}</p>
-        `;
-        
-        if (title) {
-            title.insertAdjacentHTML('afterend', contentHTML);
-        }
-    } else {
-        // Si ya existe la estructura, solo actualizar los textos
-        if (h3s[0]) h3s[0].textContent = translate('about.subtitle');
-        if (paragraphs[0]) paragraphs[0].textContent = translate('about.description1');
-        if (paragraphs[1]) paragraphs[1].textContent = translate('about.description2');
-        if (paragraphs[2]) paragraphs[2].textContent = translate('about.description3');
     }
 });
     // Menu page
