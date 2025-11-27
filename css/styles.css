@@ -2221,10 +2221,15 @@ padding: 0 1.5rem;
    ESTILOS PARA IMÁGENES EN ITEMS DEL MENÚ
    ============================================ */
 .menu-item {
+    background: white;
+    border: 2px solid #f0f0f0;
+    border-radius: 8px;
+    padding: 0;  /* ← MUY IMPORTANTE: DEBE SER 0 */
+    transition: all 0.3s;
+    position: relative;
     display: flex;
     flex-direction: column;
     overflow: hidden;
-    padding: 0;
 }
 
 .menu-item-image {
@@ -2248,6 +2253,5 @@ padding: 0 1.5rem;
     flex: 1;
     display: flex;
     flex-direction: column;
-    padding: 1.5rem;          /* ← El padding va AQUÍ */
-}
+    padding: 1.5rem;
 }
