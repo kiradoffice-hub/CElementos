@@ -2069,7 +2069,7 @@ padding: 0 1.5rem;
 .gallery-item {
     height: 300px;
 }
-   /* ============================================
+/* ============================================
    SOLUCIÓN PARA BOTÓN DE CARRITO EN MÓVIL
    ============================================ */
 
@@ -2080,6 +2080,20 @@ padding: 0 1.5rem;
         height: 100vh;
         display: flex;
         flex-direction: column;
+    }
+    
+    /* Asegurar que el header esté siempre visible y funcional */
+    .cart-header {
+        position: sticky;
+        top: 0;
+        background: white;
+        z-index: 20;
+        flex-shrink: 0;
+    }
+    
+    .close-cart {
+        z-index: 21;
+        position: relative;
     }
     
     .cart-items {
@@ -2166,4 +2180,5 @@ padding: 0 1.5rem;
         display: block;
         height: 100px; /* Espacio extra al final del scroll */
     }
+}
 }
